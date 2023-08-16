@@ -1,0 +1,50 @@
+localhost:9999/BoardApp/board/list.jsp
+lib 
+D:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
+
+0811
+
+빌드툴 Build Tool
+빌드란?
+프로그램이 실행될 수 있도록 자원을 배치
+
+ex) 
+ant: 명령어와 xml로 설정할 수 있도록 지원하는 툴
+maven
+
+
+메이븐 툴 설치
+
+</build> 아래 자동완성 
+<dependancies>
+복붙한거 넣기
+
+-SQL문-
+create tablespace  jspspace
+datafile  'C:\oraclexe\app\oracle\oradata\XE\jspspace.dbf'
+size 5m
+
+create user jsp
+identified by 1234
+default tablespace jspspace
+quota unlimited on jspspace
+
+grant create session, create table, create sequence to jsp
+
+create table board(
+	board_idx number primary key 
+	, title varchar2(100)
+	, writer varchar2(20)
+	, regdate  date  default sysdate 
+	, hit number default 0  
+	, content clob 
+)
+
+create sequence seq_board
+increment by 1
+start with 1;
+
+--테이블스페이스조회
+desc dba_tablespaces;
+select TABLESPACE_NAME from dba_tablespaces;
+
